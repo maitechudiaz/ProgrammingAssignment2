@@ -22,4 +22,16 @@ makeCacheMatrix <- function(x = matrix()) {
 # As in "cachemean" function, this function first checks if the inverse has been calculated, and if so it uses "get" to take the inverse from the cache.
 # If the inverse has not been calculated, it makes the calculations and put them in the cache using the function "setsolve".
 
+cacheSolve <- function(x, ...) {
+  ## Return a matrix that is the inverse of 'x'
+  m <- x$getsolve()
+  if(!is.null(m)) {
+    message("getting cached data")
+    return(m)
+  }
+  data <- x$get()
+  m <- solve(data, ...)
+  x$setsolve(m)
+  m
+}
 
