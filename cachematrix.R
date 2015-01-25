@@ -1,13 +1,25 @@
-makeVector <- function(x = numeric()) {
+## The function "makeCacheMatrix" creates an object of type "matrix" and cache its inverse.
+# The strategy is the same as in "makeVector" function given as an example (available at original fork: https://github.com/rdpeng/ProgrammingAssignment2)
+# (1) set the value of the matrix, (2) get the value of the matrix, (3) set the inverse (using "solve") and (4) get the value of the inverse
+
+makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
   set <- function(y) {
     x <<- y
     m <<- NULL
   }
   get <- function() x
-  setmean <- function(mean) m <<- mean
-  getmean <- function() m
+  setsolve <- function(solve) m <<- solve
+  getsolve <- function() m
   list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
+       setsolve = setsolve,
+       getsolve = getsolve)
 }
+
+
+##  This function computes the inverse of the object of type "matrix" that is returned by the function "makeCacheMatrix".
+# The strategy is the same as in "cachemean" function given as an example for the assignment (available at original fork: https://github.com/rdpeng/ProgrammingAssignment2)
+# As in "cachemean" function, this function first checks if the inverse has been calculated, and if so it uses "get" to take the inverse from the cache.
+# If the inverse has not been calculated, it makes the calculations and put them in the cache using the function "setsolve".
+
+
